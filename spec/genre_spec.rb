@@ -56,7 +56,7 @@ describe "Genre" do
 
   describe "Class methods" do
     it "keeps track of all known genres" do
-      
+      Genre.reset_genres
       Genre.count.should eq(0)
       rap = Genre.new.tap{|g| g.name = 'rap'}
       electronica = Genre.new.tap{|g| g.name = 'electronica'}
@@ -66,7 +66,8 @@ describe "Genre" do
     end
 
     it "can reset genres" do
-      genres = [1..5].collect do |i|
+      Genre.reset_genres
+      genres = (1..5).collect do |i|
         Genre.new
       end
       Genre.count.should eq(5)
