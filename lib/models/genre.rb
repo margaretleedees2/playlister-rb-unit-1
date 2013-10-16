@@ -20,6 +20,9 @@ class Genre
     All.count
   end
 
+  def self.genres
+    All
+  end
 
   def songs
     @songs ||= []
