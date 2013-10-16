@@ -16,6 +16,11 @@ class Genre
     All
   end
 
+  def self.count
+    All.count
+  end
+
+
   def songs
     @songs ||= []
   end
@@ -25,3 +30,7 @@ class Genre
   end
 
 end
+
+Genre.reset_genres
+
+
