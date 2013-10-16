@@ -14,6 +14,12 @@ class Artist
     songs.collect{|s| s.genre}.uniq
   end
 
+  def find(name)
+    Artist.all.each do |artist|
+      puts name if artist.name == name
+    end
+  end
+
   def self.reset_artists
     All.clear
   end
