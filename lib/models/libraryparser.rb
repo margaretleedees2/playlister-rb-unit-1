@@ -1,15 +1,39 @@
+require_relative 'artist.rb'
+require_relative 'genre.rb'
+require_relative 'song.rb'
+require 'pry'
+
 class LibraryParser
 
   def initialize(file)
     Dir.foreach(file) do |filename|  
       next if filename.start_with?('.')
-      puts filename.gsub('[',' - ').gsub(']',' - ').split(' - ')
+      song_array = filename.gsub('[',' - ').gsub(']',' - ').split(' - ')
+      Artist.all.each do |artist|
+        if song_array[0] == artist.name
+          artist.name.song(song_array[1])
+        else
+          song_array[0] = Artist.new(song_array[0], song_array[1])
+        end
+      end
+     
+      #if artist.name exists, then we shovel the song into the existing artist
+      #figure out a way to only initialize the artist if artist.name does not exist.
+
+
+      # song_array[0] = Artist.new(song_array[0], song_array[1])
+      song_array[1] = Song.new
+      song_array[2] = Genre.new
     end
   end  
 end  
 
+binding.pry
 parser = LibraryParser.new('../../data')
 
+#artists have songs
+#songs have genres, and artists.
+#genres have songs
 
 
 
@@ -19,40 +43,3 @@ parser = LibraryParser.new('../../data')
 
 
 
-
-
-
-
-
-
-
-        # item.take_while {|i| i != "].mp3"} # => [1, 2]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            #   ugly = file.split(/- | \[/)[2]
-    #   ugly.split("]")[0]
-    # rescue puts "there's an error"
-    # end
-
-      # ugly = file.slice(/- | \[/)[2]
-      # # puts ugly.slice("].mp3")
-      # puts ugly.class
-
-        # array[0]
-        # .each do |item|
-      #   p item
-      #   # puts artist = item[0]
-      #   # puts song = item[1].split.("].").first
-      # end
