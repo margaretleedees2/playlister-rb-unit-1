@@ -3,6 +3,7 @@ class Artist
   All = []
 
   def initialize
+  #   artist = Artist.new
     All << self
     @songs = []
   end

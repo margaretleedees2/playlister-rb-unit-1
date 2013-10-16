@@ -1,3 +1,5 @@
+require_relative 'spec_helper'
+
 describe "Genre" do
 
   it "can initialize a genre" do
@@ -44,8 +46,17 @@ describe "Genre" do
     genre.artists.count.should eq(1)
   end
 
+  it "only knows about its own artists" do
+      genre = Genre.new.tap { |g| g.name = "rap" }
+      no_genre_artist = Artist.new
+      genre_artist = Artist.new
+      genre_artist.add_song(Song.new.tap { |s| s.genre = genre })
+      genre.artists.count.should eq(1)
+    end
+
   describe "Class methods" do
     it "keeps track of all known genres" do
+      Genre.reset_genres
       Genre.count.should eq(0)
       rap = Genre.new.tap{|g| g.name = 'rap'}
       electronica = Genre.new.tap{|g| g.name = 'electronica'}
@@ -55,7 +66,8 @@ describe "Genre" do
     end
 
     it "can reset genres" do
-      genres = [1..5].collect do |i|
+      Genre.reset_genres
+      genres = (1..5).collect do |i|
         Genre.new
       end
       Genre.count.should eq(5)
@@ -64,4 +76,5 @@ describe "Genre" do
     end
 
   end
+
 end
