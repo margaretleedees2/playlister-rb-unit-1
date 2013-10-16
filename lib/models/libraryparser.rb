@@ -5,27 +5,23 @@ require 'pry'
 
 class LibraryParser
 
+  @@song_artist_genre = []  
+
   def initialize(file)
     Dir.foreach(file) do |filename|  
       next if filename.start_with?('.')
-      song_array = filename.gsub('[',' - ').gsub(']',' - ').split(' - ')
-      Artist.all.each do |artist|
-        if song_array[0] == artist.name
-          artist.name.song(song_array[1])
-        else
-          song_array[0] = Artist.new(song_array[0], song_array[1])
-        end
-      end
-     
-      #if artist.name exists, then we shovel the song into the existing artist
-      #figure out a way to only initialize the artist if artist.name does not exist.
-
-
-      # song_array[0] = Artist.new(song_array[0], song_array[1])
-      song_array[1] = Song.new
-      song_array[2] = Genre.new
+      @@song_artist_genre << filename.gsub('[',' - ').gsub(']',' - ').split(' - ')
     end
-  end  
+  end
+
+  def call_artist
+    
+  end
+
+  def self.look
+    puts @@song_artist_genre
+  end
+
 end  
 
 binding.pry
@@ -36,7 +32,9 @@ parser = LibraryParser.new('../../data')
 #genres have songs
 
 
-
+      # SONG_ARTIST_GENRE[0] = Artist.new(song_array[0], song_array[1])
+      # SONG_ARTIST_GENRE[1] = Song.new
+      # SONG_ARTIST_GENRE[2] = Genre.new
 
 
 
