@@ -6,3 +6,5 @@ class Song
     genre.songs << self
   end
 end
+
+
