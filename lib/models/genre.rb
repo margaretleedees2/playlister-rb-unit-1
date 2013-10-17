@@ -32,6 +32,10 @@ class Genre
     All.count
   end
 
+  def songcount
+    self.songs.count
+  end
+
   def self.genres
     All
   end
