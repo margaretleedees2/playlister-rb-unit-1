@@ -1,0 +1,22 @@
+<html>
+ <body>
+ <h1>Artists Yo!</h1>
+ <table border="1">
+  <tr>
+   <th>Artist</th>
+   <th>Song</th>
+   <th>Genre</th>
+  </tr>
+   <% Artist.all.each do |artist| %>
+  <tr>
+   <td><%= artist.name %></td> 
+  </tr>
+  <tr>
+   <td><%= artist.songs.join(", ") %></td> 
+  </tr>
+  <tr>
+  </tr>
+  <% end %>
+ </table>
+ </body>
+</html>
