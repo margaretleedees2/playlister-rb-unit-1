@@ -5,36 +5,31 @@ require 'pry'
 
 class LibraryParser
 
-  @@song_artist_genre = []  
-
   def initialize(file)
     Dir.foreach(file) do |filename|  
       next if filename.start_with?('.')
-      @@song_artist_genre << filename.gsub('[',' - ').gsub(']',' - ').split(' - ')
+      
+      parts = filename.gsub('[',' - ').gsub(']',' - ').split(' - ')
+      song_name = parts[1]
+      artist_name = parts[0]
+      genre_name = parts[2]
+
+      build_objects(artist_name, song_name, genre_name)
     end
   end
 
-  def call_artist
-    
-  end
+  def build_objects(artist_name, song_name, genre_name)
+    song = Song.new
+    song.name = song_name
 
-  def self.look
-    puts @@song_artist_genre
+    song.artist = Artist.find_or_create_by_name(artist_name, song_name)  
+    song.genre = Genre.find_or_create_by_name(genre_name)
   end
 
 end  
 
-binding.pry
+# binding.pry
 parser = LibraryParser.new('../../data')
-
-#artists have songs
-#songs have genres, and artists.
-#genres have songs
-
-
-      # SONG_ARTIST_GENRE[0] = Artist.new(song_array[0], song_array[1])
-      # SONG_ARTIST_GENRE[1] = Song.new
-      # SONG_ARTIST_GENRE[2] = Genre.new
 
 
 

@@ -2,22 +2,28 @@ class Artist
   attr_accessor :name, :songs
   All = []
 
-  def initialize(name, songs)
+  def initialize
     @name = name
-  #   artist = Artist.new
     All << self
-    @songs = []
-    @songs << songs
+
+  end
+
+  def self.find_or_create_by_name(name, song)
+    self.find_by_name(name, song) || self.create_by_name(name, song) 
+  end
+
+  def self.find_by_name(name, song)
+    if All.find{|a| name if a.name == name} != nil
+      All.find{|a| name if a.name == name}.songs << song
+    end
+  end
+
+  def self.create_by_name(name, song)
+    Artist.new.tap{|a| a.name = name; a.songs = [song]}
   end
 
   def genres
     songs.collect{|s| s.genre}.uniq
-  end
-
-  def find(name)
-    Artist.all.each do |artist|
-      puts name if artist.name == name
-    end
   end
 
   def self.reset_artists
@@ -41,3 +47,4 @@ class Artist
     song.artist = self
   end
 end
+
