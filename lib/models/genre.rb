@@ -4,9 +4,7 @@ class Genre
   All = []
 
   def self.find_or_create_by_name(name)
-    # Try to find a genre with this name
     self.find_by_name(name) || self.create_by_name(name) 
-    # otherwise create it
   end
 
   def self.find_by_name(name)
