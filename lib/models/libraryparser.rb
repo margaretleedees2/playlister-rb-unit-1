@@ -36,7 +36,7 @@ class LibraryParser
     song = Song.new
     song.name = song_name
 
-    song.artist = Artist.find_or_create_by_name(artist_name)  
+    song.artist = Artist.find_or_create_by_name(artist_name, song_name)  
     song.genre = Genre.find_or_create_by_name(genre_name)
   end
 

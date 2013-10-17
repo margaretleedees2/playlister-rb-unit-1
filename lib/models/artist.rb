@@ -23,11 +23,11 @@ class Artist
   end
 
   def self.find_by_name(name)
-    All.detect{|g| g.name == name}
+    All.detect{|a| a.name == name}
   end
 
-  def self.create_by_name(name)
-    Artist.new.tap{|g| g.name = name}
+  def self.create_by_name(name, song)
+    Artist.new.tap{|a| a.name = name; a.song = song}
   end
 
   def genres
