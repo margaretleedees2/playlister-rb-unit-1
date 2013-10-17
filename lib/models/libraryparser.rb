@@ -28,7 +28,7 @@ class LibraryParser
 
 end  
 
-binding.pry
+# binding.pry
 parser = LibraryParser.new('../../data')
 
 
