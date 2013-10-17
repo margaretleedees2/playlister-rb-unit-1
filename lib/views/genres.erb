@@ -1,0 +1,8 @@
+<html>
+<h1>Genres</h1>
+<p><% Genre.all.each do |genre| %>
+  <%= genre.name %>
+  <%= genre.songcount %> songs
+  </p>
+  <% end %>
+</html>

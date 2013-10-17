@@ -8,9 +8,7 @@ class Song
   end
 
   def self.all
-    @@song.each do |song_object|
-      puts song_object.name
-    end
+    @@song
   end
 
   def genre=(genre)
